@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #FF121A;
+      --primary-dark: #cc0e15;
+      --primary-light: #ff4d54;
+      --primary-transparent: #FF121A33;
+      --primary-hover: #FF121A4d;
+      --background: #0a001a;
+      --card-bg: #111111;
+      --card-bg-light: #1a1a1a;
+      --table-border: #222222;
+      --analysis-box-bg: #222222;
+      --text-gray: #aaaaaa;
+      --text-light: #cccccc;
+      --success: #21ff7e;
+      --danger: #ff4444;
+      --warning: #ffaa00;
+      --gradient: linear-gradient(135deg, #FF121A 0%, #ff3300 100%);
+      --gradient-alt: linear-gradient(135deg, #21ff7e 0%, #08b9ff 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--background);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+    }
+    
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--primary-color);
+      filter: blur(60px);
+      animation: float 15s infinite ease-in-out;
+    }
+    
+    .circle-1 {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    .circle-2 {
+      width: 400px;
+      height: 400px;
+      top: 60%;
+      right: 10%;
+      animation-delay: 5s;
+      background: #21ff7e;
+    }
+    
+    .circle-3 {
+      width: 250px;
+      height: 250px;
+      bottom: 10%;
+      left: 20%;
+      animation-delay: 10s;
+      background: #08b9ff;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.1); }
+    }
+    
+    /* Login Modal Styles */
+    .login-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 5, 5, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    
+    .login-container {
+      background: var(--card-bg);
+      border: 1px solid var(--primary-color);
+      border-radius: 20px;
+      padding: 40px 30px;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 0 40px var(--primary-transparent);
+      position: relative;
+      overflow: hidden;
+      animation: modalSlideIn 0.5s ease-out;
+    }
+    
+    .login-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient);
+    }
+    
+    @keyframes modalSlideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .login-header {
+      font-size: 28px;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .login-subtitle {
+      color: var(--text-gray);
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+    
+    .login-input-group {
+      margin-bottom: 20px;
+      text-align: left;
+      position: relative;
+    }
+    
+    .login-input-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-light);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .login-input-group input {
+      width: 100%;
+      padding: 15px 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: all 0.3s;
+    }
+    
+    .login-input-group input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 10px var(--primary-transparent);
+      background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .login-input-group i {
+      position: absolute;
+      right: 15px;
+      top: 42px;
+      color: var(--text-gray);
+    }
+    
+    .login-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--gradient);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .login-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px var(--primary-transparent);
+    }
+    
+    .login-btn:active {
+      transform: translateY(-1px);
+    }
+    
+    .login-error {
+      color: var(--danger);
+      font-size: 14px;
+      margin-top: 15px;
+      display: none;
+      text-align: center;
+      background: rgba(255, 68, 68, 0.1);
+      padding: 10px;
+      border-radius: 8px;
+      border-left: 3px solid var(--danger);
+    }
+    
+    .login-footer {
+      margin-top: 25px;
+      color: var(--text-gray);
+      font-size: 14px;
+    }
+    
+    .login-footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    
+    /* Main Content Styles */
+    .main-container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .user-info {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      z-index: 100;
+      background: rgba(17, 17, 17, 0.8);
+      padding: 10px 15px;
+      border-radius: 50px;
+      border: 1px solid var(--primary-color);
+      backdrop-filter: blur(10px);
+    }
+    
+    .user-id {
+      color: var(--primary-color);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    .logout-btn {
+      background: transparent;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      border-radius: 50px;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .logout-btn:hover {
+      background: var(--primary-transparent);
+    }
+    
+    .header {
+      font-size: 32px;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 3px;
+    }
+    
+    .card {
+      background: var(--card-bg);
+      border: 1px solid #333;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      border-color: var(--primary-color);
+    }
+    
+    .prediction-btn {
+      margin: 15px auto;
+      display: block;
+      background: var(--gradient);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 18px;
+      font-weight: 700;
+      font-size: 20px;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px var(--primary-transparent);
+    }
+    
+    .prediction-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px var(--primary-transparent);
+    }
+    
+    .prediction-btn:active {
+      transform: translateY(-1px);
+    }
+    
+    .prediction-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    
+    .prediction-btn:hover::after {
+      left: 100%;
+    }
+    
+    #patternBox {
+      color: var(--text-gray);
+      font-size: 14px;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+    
+    .tab-buttons {
+      display: flex;
+      border: 1px solid #333;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: var(--card-bg-light);
+    }
+    
+    .tab-buttons button {
+      flex: 1;
+      background: transparent;
+      color: var(--text-gray);
+      padding: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .tab-buttons button.active {
+      background: var(--primary-transparent);
+      color: var(--primary-color);
+    }
+    
+    .tab-buttons button:hover {
+      background: var(--primary-hover);
+      color: var(--primary-color);
+    }
+    
+    .tab-buttons button.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient);
+    }
+    
+    .history-container {
+      border: 1px solid #333;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      font-size: 14px;
+      border-bottom: 1px solid var(--table-border);
+      padding: 12px 8px;
+    }
+    
+    th {
+      background: var(--card-bg-light);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    
+    tr:hover {
+      background: rgba(255, 18, 26, 0.05);
+    }
+    
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    
+    .dot.red { background: var(--danger); }
+    .dot.green { background: var(--success); }
+    .dot.violet { background: violet; }
+    
+    .num.red { color: var(--danger); font-weight: bold; }
+    .num.green { color: var(--success); font-weight: bold; }
+    .num.violet { color: violet; font-weight: bold; }
+    
+    .status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    
+    .status.win { background: var(--success); color: #000; }
+    .status.loss { background: var(--danger); color: #fff; }
+    .status.pending { background: var(--warning); color: #000; }
+    
+    .analysis-dashboard {
+      background: var(--card-bg);
+      border: 1px solid #333;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .analysis-header {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .analysis-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .analysis-box {
+      flex: 1;
+      min-width: 120px;
+      margin: 5px;
+      padding: 15px;
+      background: var(--analysis-box-bg);
+      border: 1px solid #333;
+      border-radius: 12px;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    
+    .analysis-box:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-color);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .analysis-box i {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    
+    .analysis-box .value {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 5px 0;
+    }
+    
+    .analysis-box .label {
+      font-size: 12px;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .online { color: var(--success); }
+    .offline { color: var(--danger); }
+    
+    /* Loading Animation */
+    .loader {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 18, 26, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--primary-color);
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 15px;
+      }
+      
+      .header {
+        font-size: 24px;
+      }
+      
+      .user-info {
+        position: relative;
+        top: 0;
+        right: 0;
+        justify-content: center;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      
+      .analysis-content {
+        flex-direction: column;
+      }
+      
+      .analysis-box {
+        min-width: 100%;
+      }
+      
+      .card {
+        padding: 15px;
+      }
+    }
+    
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--card-bg);
+      border-left: 4px solid var(--primary-color);
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 90%;
+      animation: slideDown 0.5s ease-out;
+    }
+    
+    @keyframes slideDown {
+      from { top: -100px; opacity: 0; }
+      to { top: 20px; opacity: 1; }
+    }
+    
+    .notification.hide {
+      animation: slideUp 0.5s ease-out forwards;
+    }
+    
+    @keyframes slideUp {
+      from { top: 20px; opacity: 1; }
+      to { top: -100px; opacity: 0; }
+    }
+    
+    .notification i {
+      color: var(--primary-color);
+      font-size: 20px;
+    }
+    
+    /* VIP Tiger Specific Styles */
+    .vip-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .vip-card {
+      background: var(--card-bg);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    
+    .vip-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-color);
+      box-shadow: 0 5px 15px var(--primary-transparent);
+    }
+    
+    .vip-card i {
+      font-size: 30px;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .vip-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    
+    .vip-card p {
+      color: var(--text-gray);
+      font-size: 14px;
+    }
+    
+    .confidence-bars {
+      display: flex;
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 15px 0;
+      background: var(--card-bg-light);
+    }
+    
+    .confidence-small {
+      background: var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-weight: bold;
+      font-size: 12px;
+      transition: width 0.5s ease;
+    }
+    
+    .confidence-big {
+      background: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: bold;
+      font-size: 12px;
+      transition: width 0.5s ease;
+    }
+    
+    .signal-history {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    .signal-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid var(--table-border);
+    }
+    
+    .signal-item:last-child {
+      border-bottom: none;
+    }
+    
+    .signal-time {
+      color: var(--text-gray);
+      font-size: 12px;
+    }
+    
+    .signal-value {
+      font-weight: bold;
+    }
+    
+    .signal-win {
+      color: var(--success);
+    }
+    
+    .signal-loss {
+      color: var(--danger);
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+    <div class="bg-circle circle-3"></div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="login-modal">
+    <div class="login-container">
+      <div class="login-header">
+        <i class="fas fa-chart-line"></i>
+        𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓
+      </div>
+      <div class="login-subtitle">বাংলাদেশের সেরা সিগন্যাল প্রেডিকশন প্ল্যাটফর্ম</div>
+      
+      <div class="login-input-group">
+        <label for="gameUID"><i class="fas fa-user"></i> Game UID</label>
+        <input type="text" id="gameUID" placeholder="Enter your Game UID">
+        <i class="fas fa-id-card"></i>
+      </div>
+      
+      <div class="login-input-group">
+        <label for="accessKey"><i class="fas fa-key"></i> Access Key</label>
+        <input type="password" id="accessKey" placeholder="Enter your Access Key">
+        <i class="fas fa-lock"></i>
+      </div>
+      
+      <button id="loginBtn" class="login-btn">
+        <i class="fas fa-sign-in-alt"></i> LOGIN TO DASHBOARD
+      </button>
+      
+      <div id="loginError" class="login-error">
+        <i class="fas fa-exclamation-circle"></i> Invalid UID or Access Key
+      </div>
+      
+      <div class="login-footer">
+        Contact support if you don't have an account
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content (Initially Hidden) -->
+  <div id="mainContent" style="display: none;">
+    <div class="user-info">
+      <i class="fas fa-user-circle"></i>
+      <span class="user-id" id="userUID">UID: ---</span>
+      <button id="logoutBtn" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+    
+    <div class="main-container">
+      <div class="header">
+        <i class="fas fa-robot"></i> 𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓
+      </div>
+      
+      <div class="card">
+        <div class="analysis-header">
+          <i class="fas fa-bolt"></i> CURRENT PREDICTION
+        </div>
+        <div id="currentPeriod">Current Period: Loading...</div>
+        <div id="liveTime">Time: --:--:--</div>
+        <div id="predictionBox" class="prediction-btn">
+          <span class="loader"></span> Prediction → Analyzing...
+        </div>
+        <div id="confidenceBox">Confidence: --%</div>
+        <div id="patternBox"></div>
+      </div>
+      
+      <div class="analysis-dashboard">
+        <div class="analysis-header">
+          <i class="fas fa-chart-bar"></i> ANALYSIS DASHBOARD
+        </div>
+        <div class="analysis-content">
+          <div class="analysis-box">
+            <i class="fas fa-trophy"></i>
+            <div class="value" id="totalWins">0</div>
+            <div class="label">Total Wins</div>
+          </div>
+          <div class="analysis-box">
+            <i class="fas fa-times-circle"></i>
+            <div class="value" id="totalLosses">0</div>
+            <div class="label">Total Losses</div>
+          </div>
+          <div class="analysis-box">
+            <i class="fas fa-bullseye"></i>
+            <div class="value" id="accuracy">0%</div>
+            <div class="label">Accuracy</div>
+          </div>
+          <div class="analysis-box">
+            <i class="fas fa-server"></i>
+            <div class="value" id="serverStatus">Offline</div>
+            <div class="label">Server Status</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-buttons">
+        <button id="predTab" class="active">Prediction History</button>
+        <button id="gameTab">Game History</button>
+      </div>
+      
+      <div class="history-container">
+        <table>
+          <thead id="tableHead"></thead>
+          <tbody id="tableBody"><tr><td>Loading...</td></tr></tbody>
+        </table>
+      </div>
+      
+      <!-- VIP Tiger Specific Features -->
+      <div class="vip-features">
+        <div class="vip-card">
+          <i class="fas fa-rocket"></i>
+          <h3>HIGH ACCURACY</h3>
+          <p>আমাদের AI সিস্টেম 98%+ Accuracy রেট বজায় রাখে</p>
+        </div>
+        <div class="vip-card">
+          <i class="fas fa-bolt"></i>
+          <h3>REAL-TIME UPDATES</h3>
+          <p>প্রতি 5 সেকেন্ডে Real-time Prediction আপডেট</p>
+        </div>
+        <div class="vip-card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>SECURE SYSTEM</h3>
+          <p>সম্পূর্ণ Secure এবং Protected Environment</p>
+        </div>
+        <div class="vip-card">
+          <i class="fas fa-users"></i>
+          <h3>VIP COMMUNITY</h3>
+          <p>বাংলাদেশের সেরা VIP ট্রেডিং কমিউনিটি</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Configuration Constants
+    const API_RETRY_INTERVAL = 3000;
+    const API_MAX_RETRIES = 3;
+    const UPDATE_INTERVAL = 5000;
+    const SMALL_NUMBERS = [0, 1, 2, 3, 4];
+    const BIG_NUMBERS = [5, 6, 7, 8, 9];
+    const MAX_HISTORY = 2880;
+    const HISTORY_EXPIRY_MS = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+    const MAX_DAILY_PATTERNS = 7;
+    const MIN_CONFIDENCE_THRESHOLD = 60;
+
+    const CURRENT_API = 'https://api.bdg88zf.com/api/webapi/GetGameIssue';
+    const HISTORY_API = 'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json';
+
+    const REQUEST_DATA = {
+      typeId: 1,
+      language: 0,
+      random: "e7fe6c090da2495ab8290dac551ef1ed",
+      signature: "1F390E2B2D8A55D693E57FD905AE73A7",
+      timestamp: 1723726679
+    };
+
+    // User authentication data
+    const VALID_USERS = [
+      { uid: "1058041", accessKey: "873311", name: "ADMIN" },
+      { uid: "714551058041", accessKey: "viptigerclubbd", name: "FREE" },
+      { uid: "viptigersignal", accessKey: "viptigersignal", name: "Tigro Player 3" },
+      { uid: "3311", accessKey: "3311", name: "Rakib Player" },
+      { uid: "1058041", accessKey: "3311", name: "VIP Member" }
+    ];
+
+    // Clear all history on page load
+    let predictionHistory = [];
+    let dailyPatterns = {};
+    let stats = { wins: 0, losses: 0, streak: 0, accuracy: 0 };
+    let lastFetchedPeriod = null;
+    let lastPrediction = null;
+    let winLevel = 0;
+    let consecutiveLosses = 0;
+    let isFetching = false;
+    const MAX_WIN_LEVEL = 3;
+
+    // Initialize AIPredictor
+    class AIPredictor {
+      constructor() {
+        this.history = [];
+        this.patternWeights = { streak: 0.3, alternation: 0.25, frequency: 0.2, markov: 0.15, cluster: 0.05, recent: 0.05 };
+        this.lastPrediction = null;
+        this.accuracyStats = { correct: 0, total: 0 };
+        this.markovChain = {};
+      }
+
+      analyzePatterns(history) {
+        if (history.length < 5) return null;
+        const analysis = {
+          sizeStreak: 0,
+          sizeAlternation: 0,
+          numberFrequency: {},
+          lastNumbers: history.slice(0, 5).map(item => item.number),
+          entropy: 0,
+          markovProbabilities: {}
+        };
+
+        // Streak detection
+        let currentStreak = 1, alternations = 0;
+        for (let i = 1; i < history.length; i++) {
+          const prevSize = history[i - 1].number <= 4 ? 'small' : 'big';
+          const currentSize = history[i].number <= 4 ? 'small' : 'big';
+          if (prevSize === currentSize) {
+            currentStreak++;
+          } else {
+            analysis.sizeStreak = Math.max(analysis.sizeStreak, currentStreak);
+            currentStreak = 1;
+            alternations++;
+          }
+          analysis.numberFrequency[history[i].number] = (analysis.numberFrequency[history[i].number] || 0) + 1;
+        }
+        analysis.sizeAlternation = alternations / (history.length - 1);
+        analysis.sizeStreak = currentStreak;
+
+        // Entropy calculation
+        const probabilities = Object.values(analysis.numberFrequency).map(count => count / history.length);
+        analysis.entropy = -probabilities.reduce((sum, p) => sum + (p > 0 ? p * Math.log2(p) : 0), 0);
+
+        // Markov chain probability
+        this.markovChain = {};
+        for (let i = 1; i < history.length; i++) {
+          const prev = history[i - 1].number;
+          const curr = history[i].number;
+          if (!this.markovChain[prev]) this.markovChain[prev] = {};
+          this.markovChain[prev][curr] = (this.markovChain[prev][curr] || 0) + 1;
+        }
+        const currentNumber = history[0].number;
+        if (this.markovChain[currentNumber]) {
+          const total = Object.values(this.markovChain[currentNumber]).reduce((sum, count) => sum + count, 0);
+          analysis.markovProbabilities = Object.fromEntries(
+            Object.entries(this.markovChain[currentNumber]).map(([num, count]) => [num, count / total])
+          );
+        }
+
+        return analysis;
+      }
+
+      generatePrediction(analysis) {
+        if (!analysis) return this.generateRandomPrediction();
+        const prediction = { number: null, size: null, confidence: 0.5, reasoning: [] };
+
+        // Streak-based prediction
+        if (analysis.sizeStreak >= 3) {
+          prediction.size = analysis.lastNumbers[0] <= 4 ? 'big' : 'small';
+          prediction.confidence += this.patternWeights.streak;
+          prediction.reasoning.push(`Breaking ${analysis.sizeStreak}-${prediction.size} streak`);
+        }
+
+        // Alternation-based prediction
+        if (analysis.sizeAlternation > 0.7) {
+          prediction.size = analysis.lastNumbers[0] <= 4 ? 'big' : 'small';
+          prediction.confidence += this.patternWeights.alternation;
+          prediction.reasoning.push(`High alternation pattern (${(analysis.sizeAlternation * 100).toFixed(0)}%)`);
+        }
+
+        // Frequency-based prediction
+        const sortedNumbers = Object.entries(analysis.numberFrequency).sort((a, b) => a[1] - b[1]);
+        if (sortedNumbers.length > 0) {
+          prediction.number = parseInt(sortedNumbers[0][0]);
+          prediction.confidence += this.patternWeights.frequency;
+          prediction.reasoning.push(`Least frequent number: ${prediction.number}`);
+        }
+
+        // Markov-based prediction
+        if (analysis.markovProbabilities && Object.keys(analysis.markovProbabilities).length > 0) {
+          const sortedProbs = Object.entries(analysis.markovProbabilities).sort((a, b) => b[1] - a[1]);
+          const markovNumber = parseInt(sortedProbs[0][0]);
+          if (!prediction.number || prediction.number === markovNumber) {
+            prediction.number = markovNumber;
+            prediction.confidence += this.patternWeights.markov;
+            prediction.reasoning.push(`Markov chain suggests number: ${markovNumber}`);
+          }
+        }
+
+        // Entropy-based adjustment
+        if (analysis.entropy > 2) {
+          prediction.confidence += this.patternWeights.recent;
+          prediction.reasoning.push(`High entropy detected (${analysis.entropy.toFixed(2)})`);
+        }
+
+        // Fallback to weighted random if no strong pattern
+        if (!prediction.size && !prediction.number) return this.generateWeightedRandomPrediction(analysis);
+
+        // Finalize prediction
+        if (!prediction.number) {
+          const possibleNumbers = prediction.size === 'small' ? [0, 1, 2, 3, 4] : [5, 6, 7, 8, 9];
+          prediction.number = possibleNumbers[Math.floor(Math.random() * possibleNumbers.length)];
+        } else if (!prediction.size) {
+          prediction.size = prediction.number <= 4 ? 'small' : 'big';
+        }
+
+        // Normalize confidence between 50-95%
+        prediction.confidence = Math.min(0.95, Math.max(0.5, prediction.confidence));
+        return prediction;
+      }
+
+      generateWeightedRandomPrediction(analysis) {
+        const numberWeights = Array(10).fill(1);
+        for (const [num, count] of Object.entries(analysis.numberFrequency)) {
+          numberWeights[num] = 1 / (count + 1);
+        }
+        const totalWeight = numberWeights.reduce((sum, weight) => sum + weight, 0);
+        const normalizedWeights = numberWeights.map(weight => weight / totalWeight);
+        const cumulativeWeights = [];
+        normalizedWeights.reduce((sum, weight, i) => {
+          cumulativeWeights[i] = sum + weight;
+          return sum + weight;
+        }, 0);
+
+        const random = Math.random();
+        let selectedNumber = 0;
+        for (let i = 0; i < cumulativeWeights.length; i++) {
+          if (random <= cumulativeWeights[i]) {
+            selectedNumber = i;
+            break;
+          }
+        }
+
+        return {
+          number: selectedNumber,
+          size: selectedNumber <= 4 ? 'small' : 'big',
+          confidence: 0.6,
+          reasoning: ['Weighted random selection based on frequency']
+        };
+      }
+
+      generateRandomPrediction() {
+        const number = Math.floor(Math.random() * 10);
+        return { number, size: number <= 4 ? 'small' : 'big', confidence: 0.5, reasoning: ['Random prediction (insufficient data)'] };
+      }
+
+      updateAccuracy(actualNumber) {
+        if (!this.lastPrediction) return;
+        this.accuracyStats.total++;
+        if ((this.lastPrediction.number <= 4 ? 'small' : 'big') === (actualNumber <= 4 ? 'small' : 'big')) {
+          this.accuracyStats.correct++;
+          this.adjustPatternWeights(true);
+        } else {
+          this.adjustPatternWeights(false);
+        }
+      }
+
+      adjustPatternWeights(isCorrect) {
+        if (isCorrect) {
+          this.patternWeights.streak += 0.01;
+          this.patternWeights.alternation += 0.01;
+          this.patternWeights.frequency += 0.01;
+          this.patternWeights.markov += 0.01;
+          this.patternWeights.cluster += 0.01;
+          this.patternWeights.recent += 0.01;
+        } else {
+          this.patternWeights.streak = Math.max(0.2, this.patternWeights.streak - 0.01);
+          this.patternWeights.alternation = Math.max(0.15, this.patternWeights.alternation - 0.01);
+          this.patternWeights.frequency = Math.max(0.1, this.patternWeights.frequency - 0.01);
+          this.patternWeights.markov = Math.max(0.1, this.patternWeights.markov - 0.01);
+          this.patternWeights.cluster = Math.max(0.05, this.patternWeights.cluster - 0.01);
+          this.patternWeights.recent = Math.max(0.05, this.patternWeights.recent - 0.01);
+        }
+        const totalWeight = Object.values(this.patternWeights).reduce((sum, w) => sum + w, 0);
+        Object.keys(this.patternWeights).forEach(key => {
+          this.patternWeights[key] /= totalWeight;
+        });
+      }
+
+      getAccuracy() {
+        return this.accuracyStats.total === 0 ? 0 : (this.accuracyStats.correct / this.accuracyStats.total) * 100;
+      }
+
+      getRecentAccuracy() {
+        const recent = predictionHistory.slice(0, 100).filter(p => p.resultStatus !== 'Pending');
+        const correct = recent.filter(p => p.resultStatus === 'WIN').length;
+        return recent.length > 0 ? (correct / recent.length) * 100 : 0;
+      }
+    }
+
+    // Initialize AdvancedPredictor
+    class AdvancedPredictor {
+      constructor() {
+        this.history = [];
+      }
+
+      analyzeLongTermPatterns(history) {
+        if (history.length < 10) return null;
+        const analysis = {
+          clusterPatterns: [],
+          longTermFrequency: {},
+          sequenceScore: 0
+        };
+
+        // Cluster pattern detection (grouping of similar results)
+        const clusters = [];
+        let currentCluster = [history[0].number];
+        for (let i = 1; i < history.length; i++) {
+          const prevSize = history[i - 1].number <= 4 ? 'small' : 'big';
+          const currSize = history[i].number <= 4 ? 'small' : 'big';
+          if (prevSize === currSize) {
+            currentCluster.push(history[i].number);
+          } else {
+            if (currentCluster.length >= 3) clusters.push(currentCluster);
+            currentCluster = [history[i].number];
+          }
+        }
+        if (currentCluster.length >= 3) clusters.push(currentCluster);
+        analysis.clusterPatterns = clusters;
+
+        // Long-term frequency
+        history.forEach(item => {
+          analysis.longTermFrequency[item.number] = (analysis.longTermFrequency[item.number] || 0) + 1;
+        });
+
+        // Sequence score (based on repeating sequences)
+        const sequences = this.detectSequences(history);
+        analysis.sequenceScore = sequences.length > 0 ? sequences[0].length / history.length : 0;
+
+        return analysis;
+      }
+
+      detectSequences(history) {
+        const sequences = [];
+        for (let len = 3; len <= Math.floor(history.length / 2); len++) {
+          for (let i = 0; i <= history.length - len; i++) {
+            const seq = history.slice(i, i + len).map(item => item.number);
+            for (let j = i + len; j <= history.length - len; j++) {
+              const compare = history.slice(j, j + len).map(item => item.number);
+              if (seq.every((val, idx) => val === compare[idx])) {
+                sequences.push(seq);
+              }
+            }
+          }
+        }
+        return sequences;
+      }
+
+      generatePrediction(analysis) {
+        if (!analysis) return { number: Math.floor(Math.random() * 10), size: null, confidence: 0.5, reasoning: ['Random (insufficient data)'] };
+
+        const prediction = { number: null, size: null, confidence: 0.5, reasoning: [] };
+
+        // Cluster-based prediction
+        if (analysis.clusterPatterns.length > 0) {
+          const latestCluster = analysis.clusterPatterns[0];
+          const clusterSize = latestCluster[0] <= 4 ? 'small' : 'big';
+          prediction.size = clusterSize === 'small' ? 'big' : 'small';
+          prediction.confidence += 0.2;
+          prediction.reasoning.push(`Cluster pattern detected (size: ${latestCluster.length})`);
+        }
+
+        // Sequence-based prediction
+        if (analysis.sequenceScore > 0.1) {
+          const sortedFreq = Object.entries(analysis.longTermFrequency).sort((a, b) => b[1] - a[1]);
+          prediction.number = parseInt(sortedFreq[0][0]);
+          prediction.confidence += 0.15;
+          prediction.reasoning.push(`Sequence pattern detected (score: ${(analysis.sequenceScore * 100).toFixed(0)}%)`);
+        }
+
+        // Finalize prediction
+        if (!prediction.number) {
+          const possibleNumbers = prediction.size === 'small' ? [0, 1, 2, 3, 4] : [5, 6, 7, 8, 9];
+          prediction.number = possibleNumbers[Math.floor(Math.random() * possibleNumbers.length)];
+        }
+        if (!prediction.size) {
+          prediction.size = prediction.number <= 4 ? 'small' : 'big';
+        }
+
+        prediction.confidence = Math.min(0.95, Math.max(0.5, prediction.confidence));
+        return prediction;
+      }
+    }
+
+    // Initialize predictors
+    const aiPredictor = new AIPredictor();
+    const advancedPredictor = new AdvancedPredictor();
+
+    // Enhanced ultraAIPredict
+    const ultraAIPredict = (history) => {
+      if (history.length < 3) {
+        return { prediction: Math.random() > 0.5 ? "BIG" : "SMALL", confidence: 0.35 + Math.random() * (1 - 0.35), logic: 0 };
+      }
+
+      const recent = history.filter(h => h.resultType !== "-").slice(0, 10);
+      const predictions = [];
+
+      // Streak detection
+      let lastStreakType = recent[0].resultType;
+      let streakLength = 1;
+      for (let i = 1; i < recent.length; i++) {
+        if (recent[i].resultType === lastStreakType) {
+          streakLength++;
+        } else {
+          break;
+        }
+      }
+      if (streakLength >= 3) {
+        predictions.push({
+          prediction: lastStreakType === "BIG" ? "SMALL" : "BIG",
+          confidence: Math.min(90, 70 + (streakLength * 5)),
+          logic: 1
+        });
+      }
+
+      // Weighted probability
+      const lookback = Math.min(15, recent.length);
+      const bigCount = recent.slice(0, lookback).filter(r => r.resultType === "BIG").length;
+      const bigPercent = (bigCount / lookback) * 100;
+      if (Math.abs(bigPercent - 50) > 20) {
+        predictions.push({
+          prediction: bigPercent > 50 ? "SMALL" : "BIG",
+          confidence: Math.min(90, Math.abs(bigPercent - 50) + 40),
+          logic: 8
+        });
+      }
+
+      // Loss recovery
+      if (consecutiveLosses >= 2) {
+        predictions.push({
+          prediction: lastPrediction === "BIG" ? "SMALL" : "BIG",
+          confidence: 75 + (consecutiveLosses * 5),
+          logic: 22
+        });
+      }
+
+      // Default strategy
+      if (predictions.length === 0) {
+        predictions.push({
+          prediction: recent[0].resultType === "BIG" ? "SMALL" : "BIG",
+          confidence: 60,
+          logic: 12
+        });
+      }
+
+      // Select best prediction
+      let bestPrediction = predictions.reduce((best, current) => 
+        current.confidence > best.confidence ? current : best, predictions[0]);
+
+      // Win level management
+      if (winLevel >= MAX_WIN_LEVEL) {
+        bestPrediction.prediction = bestPrediction.prediction === "BIG" ? "SMALL" : "BIG";
+        bestPrediction.confidence = 0.35;
+        winLevel = 0;
+      }
+
+      return bestPrediction;
+    };
+
+    // Voting mechanism
+    const votePredictions = (aiPrediction, ultraPrediction, advancedPrediction) => {
+      const predictions = [aiPrediction, ultraPrediction, advancedPrediction];
+      const voteCount = {};
+      predictions.forEach(pred => {
+        const predKey = pred.prediction || pred.size.toUpperCase();
+        voteCount[predKey] = (voteCount[predKey] || 0) + 1;
+      });
+      const majorityPrediction = Object.entries(voteCount).sort((a, b) => b[1] - a[1])[0]?.[0] || aiPrediction.size.toUpperCase();
+      const totalConfidence = predictions.reduce((sum, pred) => sum + (pred.confidence || pred.confidence / 100), 0) / predictions.length;
+      const reasoning = predictions.flatMap(pred => pred.reasoning || []).filter((v, i, a) => a.indexOf(v) === i);
+      return { prediction: majorityPrediction, confidence: Math.min(0.95, Math.max(0.5, totalConfidence)), reasoning };
+    };
+
+    // Update status without opposite number
+    const updateLastStatus = (actualNumber) => {
+      const resultType = actualNumber >= 5 ? 'BIG' : 'SMALL';
+      const status = lastPrediction === resultType ? 'WIN' : 'LOSS';
+
+      if (status === 'WIN') {
+        winLevel = Math.min(winLevel + 1, MAX_WIN_LEVEL);
+        stats.streak = stats.streak + 1;
+        consecutiveLosses = 0;
+        stats.wins++;
+      } else {
+        winLevel = 0;
+        stats.streak = 0;
+        consecutiveLosses++;
+        stats.losses++;
+      }
+
+      return { status, resultType };
+    };
+
+    const formatPeriodNumber = () => {
+      const now = new Date();
+      now.setTime(now.getTime() + (now.getTimezoneOffset() + 5.5 * 60) * 60 * 1000);
+      const yearMonthDay = now.toISOString().slice(0, 10).replace(/-/g, '');
+      const minutes = now.getHours() * 60 + now.getMinutes();
+      return yearMonthDay + "1000" + (10001 + minutes);
+    };
+
+    const pad = (num) => num.toString().padStart(2, '0');
+
+    const formatTimer = () => {
+      const now = new Date();
+      now.setTime(now.getTime() + (now.getTimezoneOffset() + 5.5 * 60) * 60 * 1000);
+      const seconds = now.getSeconds();
+      return `${pad(0)}:${pad(60 - seconds)}`;
+    };
+
+    const getCurrentDateKey = () => {
+      const now = new Date();
+      now.setTime(now.getTime() + (now.getTimezoneOffset() + 5.5 * 60) * 60 * 1000);
+      return now.toISOString().slice(0, 10).replace(/-/g, '');
+    };
+
+    // Store Daily Pattern
+    const storeDailyPattern = (result) => {
+      const dateKey = getCurrentDateKey();
+      if (!dailyPatterns[dateKey]) dailyPatterns[dateKey] = [];
+      dailyPatterns[dateKey].push({
+        number: Number(result.number),
+        isBig: Number(result.number) >= 5,
+        timestamp: Date.now()
+      });
+
+      // Clean up old patterns
+      const dates = Object.keys(dailyPatterns).sort();
+      if (dates.length > MAX_DAILY_PATTERNS) {
+        dates.slice(0, dates.length - MAX_DAILY_PATTERNS).forEach(date => {
+          delete dailyPatterns[date];
+        });
+      }
+    };
+
+    // Clean Old History
+    const cleanOldHistory = () => {
+      const now = Date.now();
+      predictionHistory = predictionHistory.filter(item => {
+        const timestamp = item.timestamp || now;
+        return (now - timestamp) <= HISTORY_EXPIRY_MS;
+      });
+
+      if (predictionHistory.length > MAX_HISTORY) {
+        predictionHistory = predictionHistory.slice(0, MAX_HISTORY);
+      }
+    };
+
+    function updateColorScheme() {
+      const hue = Math.floor(Math.random() * 360);
+      const saturation = Math.floor(Math.random() * 30) + 70;
+      const lightness = Math.floor(Math.random() * 20) + 50;
+      const primaryColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      const primaryTransparent = primaryColor.replace(')', ', 0.2)').replace('hsl', 'hsla');
+      const primaryHover = primaryColor.replace(')', ', 0.3)').replace('hsl', 'hsla');
+      document.documentElement.style.setProperty('--primary-color', primaryColor);
+      document.documentElement.style.setProperty('--primary-transparent', primaryTransparent);
+      document.documentElement.style.setProperty('--primary-hover', primaryHover);
+    }
+
+    function getBigSmall(num) {
+      return num >= 5 ? "BIG" : "SMALL";
+    }
+
+    function getColor(num) {
+      if ([1, 3, 7, 9].includes(num)) return "Green";
+      if ([2, 4, 6, 8].includes(num)) return "Red";
+      return "Violet";
+    }
+
+    function updateLiveTime() {
+      document.getElementById("liveTime").innerText = "Time: " + formatTimer();
+    }
+
+    function updateStats() {
+      const total = stats.wins + stats.losses;
+      stats.accuracy = total > 0 ? ((stats.wins / total) * 100).toFixed(2) : 0;
+      document.getElementById("totalWins").innerText = stats.wins;
+      document.getElementById("totalLosses").innerText = stats.losses;
+      document.getElementById("accuracy").innerText = `${stats.accuracy}%`;
+      
+      // Update server status with color
+      const serverStatus = document.getElementById("serverStatus");
+      if (serverStatus.innerText.includes("Online")) {
+        serverStatus.className = "online";
+      } else {
+        serverStatus.className = "offline";
+      }
+    }
+
+    async function checkInternetSpeed() {
+      const statusElement = document.getElementById("serverStatus");
+      if (!navigator.onLine) {
+        statusElement.innerText = "Offline";
+        return;
+      }
+
+      try {
+        const startTime = performance.now();
+        await fetch('https://www.google.com', { mode: 'no-cors' });
+        const endTime = performance.now();
+        const latency = Math.round(endTime - startTime);
+        const speed = latency < 200 ? "Fast" : latency < 500 ? "Medium" : "Slow";
+        statusElement.innerText = `Online (${speed})`;
+      } catch (e) {
+        statusElement.innerText = "Offline";
+      }
+    }
+
+    // API Fetch with Retry for History
+    const fetchHistory = async (retryCount = 0) => {
+      if (isFetching) return null;
+      isFetching = true;
+      try {
+        const res = await fetch(HISTORY_API + '?ts=' + Date.now());
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        const data = await res.json();
+        if (!data?.data?.list) throw new Error("Invalid response structure");
+        return data.data.list;
+      } catch (e) {
+        console.error("History fetch error:", e.message);
+        if (retryCount < API_MAX_RETRIES) {
+          await new Promise(resolve => setTimeout(resolve, API_RETRY_INTERVAL));
+          return fetchHistory(retryCount + 1);
+        }
+        return [];
+      } finally {
+        isFetching = false;
+      }
+    };
+
+    // Fetch Current Period with Retry
+    const fetchCurrentPeriod = async (retryCount = 0) => {
+      try {
+        const periodRes = await fetch(CURRENT_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...REQUEST_DATA, timestamp: Math.floor(Date.now() / 1000) })
+        });
+        if (!periodRes.ok) throw new Error(`HTTP error! status: ${periodRes.status}`);
+        const periodData = await periodRes.json();
+        if (!periodData?.data?.issueNumber) throw new Error("Invalid response structure");
+        return periodData.data.issueNumber;
+      } catch (e) {
+        console.error("Period fetch error:", e.message);
+        if (retryCount < API_MAX_RETRIES) {
+          await new Promise(resolve => setTimeout(resolve, API_RETRY_INTERVAL));
+          return fetchCurrentPeriod(retryCount + 1);
+        }
+        return formatPeriodNumber();
+      }
+    };
+
+    async function fetchData() {
+      try {
+        updateColorScheme();
+
+        const period = await fetchCurrentPeriod();
+        const list = await fetchHistory();
+        let history = [];
+        if (list.length > 0) {
+          history = list.slice(0, 10).map(item => {
+            const num = parseInt(item.number);
+            return { period: item.issueNumber, number: num, resultType: getBigSmall(num), color: getColor(num) };
+          });
+          history.forEach(storeDailyPattern);
+          aiPredictor.history = history;
+          advancedPredictor.history = history;
+        }
+
+        if (period !== "Unavailable" && period !== lastFetchedPeriod) {
+          // Clean old history
+          cleanOldHistory();
+
+          // Update previous prediction if pending
+          if (predictionHistory.length > 0 && predictionHistory[0].resultStatus === "Pending") {
+            const match = history.find(h => h.period === predictionHistory[0].period);
+            if (match) {
+              aiPredictor.updateAccuracy(match.number);
+              const { status, resultType } = updateLastStatus(match.number);
+              predictionHistory[0].resultType = resultType;
+              predictionHistory[0].resultStatus = status;
+              predictionHistory[0].number = match.number;
+              updateStats();
+            }
+          }
+
+          // Generate predictions from all algorithms
+          const aiDecision = aiPredictor.generatePrediction(aiPredictor.analyzePatterns(history));
+          const ultraDecision = ultraAIPredict(predictionHistory);
+          const advancedDecision = advancedPredictor.generatePrediction(advancedPredictor.analyzeLongTermPatterns(history));
+
+          // Voting mechanism
+          const finalDecision = votePredictions(aiDecision, ultraDecision, advancedDecision);
+          aiPredictor.lastPrediction = aiDecision;
+          lastPrediction = finalDecision.prediction;
+
+          // Dynamic betting level
+          const recentAccuracy = aiPredictor.getRecentAccuracy();
+          const dynamicThreshold = MIN_CONFIDENCE_THRESHOLD - (recentAccuracy > 80 ? 5 : 0);
+          const betLevel = finalDecision.confidence * 100 >= dynamicThreshold ? '1x' : '0x';
+          finalDecision.reasoning.push(`Bet Level: ${betLevel} (Threshold: ${dynamicThreshold}%)`);
+
+          document.getElementById("currentPeriod").innerText = `Current Period: ${period}`;
+          document.getElementById("predictionBox").innerHTML = `Prediction → ${lastPrediction}`;
+          document.getElementById("confidenceBox").innerText = `Confidence: ${Math.round(finalDecision.confidence * 100)}%`;
+          document.getElementById("patternBox").innerText = finalDecision.reasoning.join(', ');
+
+          // Add new prediction with timestamp
+          if (!predictionHistory.find(p => p.period === period)) {
+            predictionHistory.unshift({
+              period: period,
+              prediction: lastPrediction,
+              resultType: "-",
+              resultStatus: "Pending",
+              number: null,
+              timestamp: Date.now()
+            });
+          }
+
+          lastFetchedPeriod = period;
+        }
+
+        updateStats();
+        renderTable();
+      } catch (e) {
+        console.error("Unexpected error:", e.message);
+      }
+    }
+
+    function renderTable() {
+      const head = document.getElementById("tableHead");
+      const body = document.getElementById("tableBody");
+
+      if (document.getElementById("predTab").classList.contains("active")) {
+        head.innerHTML = "<tr><th>Period</th><th>Prediction</th><th>Actual</th><th>Status</th></tr>";
+        body.innerHTML = predictionHistory.length === 0
+          ? "<tr><td colspan='4'>No predictions yet</td></tr>"
+          : predictionHistory.map(item => `
+            <tr>
+              <td>${item.period}</td>
+              <td>${item.prediction}</td>
+              <td>${item.resultType}</td>
+              <td><span class="status ${item.resultStatus.toLowerCase()}">${item.resultStatus.charAt(0)}</span></td>
+            </tr>`).join("");
+      } else {
+        head.innerHTML = "<tr><th>Period</th><th>Number</th><th>Big/Small</th><th>Color</th></tr>";
+        body.innerHTML = "<tr><td colspan='4'>Loading game history...</td></tr>";
+        fetch(HISTORY_API + '?ts=' + Date.now())
+          .then(res => {
+            if (!res.ok) {
+              body.innerHTML = "<tr><td colspan='4'>Error loading game history</td></tr>";
+              return;
+            }
+            return res.json();
+          })
+          .then(data => {
+            if (!data?.data?.list) {
+              body.innerHTML = "<tr><td colspan='4'>Error loading game history</td></tr>";
+              return;
+            }
+            const history = data.data.list.slice(0, 10).map(item => {
+              const num = parseInt(item.number);
+              return { period: item.issueNumber, number: num, size: getBigSmall(num), color: getColor(num) };
+            });
+            body.innerHTML = history.map(item => {
+              const colorClass = item.color.toLowerCase();
+              return `
+                <tr>
+                  <td>${item.period}</td>
+                  <td class="num ${colorClass}">${item.number}</td>
+                  <td>${item.size}</td>
+                  <td><span class="dot ${colorClass}"></span></td>
+                </tr>`;
+            }).join("");
+          })
+          .catch(e => {
+            body.innerHTML = "<tr><td colspan='4'>Error loading game history</td></tr>";
+            console.error("Game history error:", e.message);
+          });
+      }
+    }
+
+    // Login System Functions
+    function validateLogin(uid, accessKey) {
+      return VALID_USERS.some(user => user.uid === uid && user.accessKey === accessKey);
+    }
+
+    function getUserName(uid) {
+      const user = VALID_USERS.find(user => user.uid === uid);
+      return user ? user.name : "User";
+    }
+
+    function showNotification(message, type = "info") {
+      const notification = document.createElement("div");
+      notification.className = "notification";
+      notification.innerHTML = `
+        <i class="fas fa-${type === "success" ? "check-circle" : "info-circle"}"></i>
+        <span>${message}</span>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.classList.add("hide");
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 500);
+      }, 3000);
+    }
+
+    function handleLogin() {
+      const uid = document.getElementById("gameUID").value.trim();
+      const accessKey = document.getElementById("accessKey").value.trim();
+      const errorElement = document.getElementById("loginError");
+      
+      if (!uid || !accessKey) {
+        errorElement.textContent = "Please enter both UID and Access Key";
+        errorElement.style.display = "block";
+        return;
+      }
+      
+      if (validateLogin(uid, accessKey)) {
+        // Successful login
+        document.getElementById("loginModal").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        document.getElementById("userUID").textContent = `UID: ${uid}`;
+        errorElement.style.display = "none";
+        
+        // Store login state in localStorage
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("userUID", uid);
+        
+        // Show welcome notification
+        showNotification(`Welcome back, ${getUserName(uid)}!`, "success");
+        
+        // Start the application
+        startApplication();
+      } else {
+        // Failed login
+        errorElement.textContent = "Invalid UID or Access Key. Please try again.";
+        errorElement.style.display = "block";
+        document.getElementById("accessKey").value = "";
+      }
+    }
+
+    function handleLogout() {
+      document.getElementById("loginModal").style.display = "flex";
+      document.getElementById("mainContent").style.display = "none";
+      document.getElementById("gameUID").value = "";
+      document.getElementById("accessKey").value = "";
+      document.getElementById("loginError").style.display = "none";
+      
+      // Clear login state from localStorage
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userUID");
+      
+      // Show logout notification
+      showNotification("You have been logged out successfully", "info");
+    }
+
+    function checkLoginStatus() {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      const userUID = localStorage.getItem("userUID");
+      
+      if (isLoggedIn === "true" && userUID) {
+        document.getElementById("loginModal").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        document.getElementById("userUID").textContent = `UID: ${userUID}`;
+        startApplication();
+      }
+    }
+
+    function startApplication() {
+      // Initialize the application
+      document.getElementById("predTab").onclick = () => {
+        document.getElementById("predTab").classList.add("active");
+        document.getElementById("gameTab").classList.remove("active");
+        renderTable();
+      };
+      document.getElementById("gameTab").onclick = () => {
+        document.getElementById("gameTab").classList.add("active");
+        document.getElementById("predTab").classList.remove("active");
+        renderTable();
+      };
+
+      updateColorScheme();
+      setInterval(updateLiveTime, 1000);
+      setInterval(fetchData, UPDATE_INTERVAL);
+      setInterval(checkInternetSpeed, 5000);
+      fetchData();
+      updateLiveTime();
+      checkInternetSpeed();
+    }
+
+    // Event Listeners for Login System
+    document.getElementById("loginBtn").addEventListener("click", handleLogin);
+    document.getElementById("logoutBtn").addEventListener("click", handleLogout);
+
+    // Allow login with Enter key
+    document.getElementById("accessKey").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        handleLogin();
+      }
+    });
+
+    // Focus on UID field when modal loads
+    document.getElementById("gameUID").focus();
+
+    // Check login status on page load
+    checkLoginStatus();
+  </script>
+</body>
+</html>
